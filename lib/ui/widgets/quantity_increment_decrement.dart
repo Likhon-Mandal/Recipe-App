@@ -18,10 +18,7 @@ class QuantityIncrementDecrement extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
       decoration: BoxDecoration(
-        border: Border.all(
-          width: 2,
-          color: Colors.grey.shade200,
-        ),
+        border: Border.all(width: 2, color: Colors.grey.shade200),
         borderRadius: BorderRadius.circular(25),
       ),
       child: Row(
@@ -36,10 +33,7 @@ class QuantityIncrementDecrement extends StatelessWidget {
           const SizedBox(width: 4),
           Text(
             "$currentNumber",
-            style: const TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-            ),
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           const SizedBox(width: 4),
           IconButton(

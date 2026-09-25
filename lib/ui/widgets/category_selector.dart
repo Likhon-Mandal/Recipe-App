@@ -106,7 +106,9 @@ class _CategoryPillState extends State<_CategoryPill>
                   ]
                 : [
                     BoxShadow(
-                      color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.05),
+                      color: Colors.black.withValues(
+                        alpha: isDark ? 0.25 : 0.05,
+                      ),
                       blurRadius: 6,
                       offset: const Offset(0, 2),
                     ),
@@ -116,8 +118,7 @@ class _CategoryPillState extends State<_CategoryPill>
             duration: const Duration(milliseconds: 200),
             style: TextStyle(
               color: widget.isSelected ? Colors.white : inactiveText,
-              fontWeight:
-                  widget.isSelected ? FontWeight.w700 : FontWeight.w500,
+              fontWeight: widget.isSelected ? FontWeight.w700 : FontWeight.w500,
               fontSize: 14,
             ),
             child: Text(widget.label),

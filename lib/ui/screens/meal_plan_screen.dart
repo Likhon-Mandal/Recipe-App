@@ -85,13 +85,16 @@ class _MealPlanScreenState extends State<MealPlanScreen>
                     transitionBuilder: (child, anim) => FadeTransition(
                       opacity: anim,
                       child: SlideTransition(
-                        position: Tween<Offset>(
-                          begin: const Offset(0.05, 0),
-                          end: Offset.zero,
-                        ).animate(CurvedAnimation(
-                          parent: anim,
-                          curve: Curves.easeOutCubic,
-                        )),
+                        position:
+                            Tween<Offset>(
+                              begin: const Offset(0.05, 0),
+                              end: Offset.zero,
+                            ).animate(
+                              CurvedAnimation(
+                                parent: anim,
+                                curve: Curves.easeOutCubic,
+                              ),
+                            ),
                         child: child,
                       ),
                     ),
@@ -108,7 +111,12 @@ class _MealPlanScreenState extends State<MealPlanScreen>
 
   Widget _buildHeader() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(kHorizontalPadding, 20, kHorizontalPadding, 0),
+      padding: const EdgeInsets.fromLTRB(
+        kHorizontalPadding,
+        20,
+        kHorizontalPadding,
+        0,
+      ),
       child: FadeTransition(
         opacity: _entranceController,
         child: Column(
@@ -137,7 +145,12 @@ class _MealPlanScreenState extends State<MealPlanScreen>
 
   Widget _buildDayStrip() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(kHorizontalPadding, 18, kHorizontalPadding, 8),
+      padding: const EdgeInsets.fromLTRB(
+        kHorizontalPadding,
+        18,
+        kHorizontalPadding,
+        8,
+      ),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
@@ -149,7 +162,8 @@ class _MealPlanScreenState extends State<MealPlanScreen>
                 final isSelected = i == _selectedDayIndex;
                 final hasMeals = mp.hasAnyMealOnDay(day);
                 final date = DateTime.now().subtract(
-                    Duration(days: DateTime.now().weekday - 1 - i));
+                  Duration(days: DateTime.now().weekday - 1 - i),
+                );
 
                 return GestureDetector(
                   onTap: () {
@@ -161,13 +175,15 @@ class _MealPlanScreenState extends State<MealPlanScreen>
                     curve: Curves.easeOutCubic,
                     margin: const EdgeInsets.only(right: 10),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 14, vertical: 12),
+                      horizontal: 14,
+                      vertical: 12,
+                    ),
                     decoration: BoxDecoration(
                       color: isSelected
                           ? kPrimaryColor
                           : (Theme.of(context).brightness == Brightness.dark
-                              ? const Color(0xFF1A1D2E)
-                              : Colors.white),
+                                ? const Color(0xFF1A1D2E)
+                                : Colors.white),
                       borderRadius: BorderRadius.circular(18),
                       boxShadow: isSelected
                           ? [
@@ -232,7 +248,12 @@ class _MealPlanScreenState extends State<MealPlanScreen>
   Widget _buildMealSlots(MealPlanProvider mp) {
     return ListView(
       key: ValueKey(_selectedDayIndex),
-      padding: EdgeInsets.fromLTRB(kHorizontalPadding, 8, kHorizontalPadding, 120),
+      padding: EdgeInsets.fromLTRB(
+        kHorizontalPadding,
+        8,
+        kHorizontalPadding,
+        120,
+      ),
       physics: const BouncingScrollPhysics(),
       children: MealPlanProvider.slots.map((slot) {
         final recipe = mp.getRecipe(_selectedDay, slot);
@@ -258,18 +279,22 @@ class _MealPlanScreenState extends State<MealPlanScreen>
       backgroundColor: Colors.transparent,
       builder: (ctx) => _PickRecipeSheet(
         onPick: (recipe) async {
-          await context
-              .read<MealPlanProvider>()
-              .setMeal(_selectedDay, slot, recipe);
+          await context.read<MealPlanProvider>().setMeal(
+            _selectedDay,
+            slot,
+            recipe,
+          );
           if (mounted) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(
                 content: Text(
-                    '${recipe.name} added to ${_dayLabels[_selectedDay]} ${slot[0].toUpperCase() + slot.substring(1)}!'),
+                  '${recipe.name} added to ${_dayLabels[_selectedDay]} ${slot[0].toUpperCase() + slot.substring(1)}!',
+                ),
                 backgroundColor: kSuccessColor,
                 behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(14)),
+                  borderRadius: BorderRadius.circular(14),
+                ),
               ),
             );
           }
@@ -288,29 +313,33 @@ class _MealPlanScreenState extends State<MealPlanScreen>
       context: context,
       builder: (ctx) => AlertDialog(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Remove Meal',
-            style: TextStyle(fontWeight: FontWeight.w700)),
-        content: Text('Remove "$recipeName" from ${_dayLabels[_selectedDay]} $slot?'),
+        title: const Text(
+          'Remove Meal',
+          style: TextStyle(fontWeight: FontWeight.w700),
+        ),
+        content: Text(
+          'Remove "$recipeName" from ${_dayLabels[_selectedDay]} $slot?',
+        ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel',
-                style: TextStyle(color: kTextSecondary)),
+            child: const Text(
+              'Cancel',
+              style: TextStyle(color: kTextSecondary),
+            ),
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: Colors.red.shade400,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
             ),
             onPressed: () {
               Navigator.pop(ctx);
-              context
-                  .read<MealPlanProvider>()
-                  .removeMeal(_selectedDay, slot);
+              context.read<MealPlanProvider>().removeMeal(_selectedDay, slot);
             },
-            child:
-                const Text('Remove', style: TextStyle(color: Colors.white)),
+            child: const Text('Remove', style: TextStyle(color: Colors.white)),
           ),
         ],
       ),
@@ -406,7 +435,10 @@ class _MealSlotCard extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     'Tap to add a recipe',
-                    style: TextStyle(fontSize: 13, color: isDark ? const Color(0xFF5C6880) : kTextLight),
+                    style: TextStyle(
+                      fontSize: 13,
+                      color: isDark ? const Color(0xFF5C6880) : kTextLight,
+                    ),
                   ),
                 ],
               ),
@@ -418,9 +450,7 @@ class _MealSlotCard extends StatelessWidget {
                 color: color.withValues(alpha: 0.12),
                 shape: BoxShape.circle,
               ),
-              child: Center(
-                child: Icon(Icons.add, color: color, size: 20),
-              ),
+              child: Center(child: Icon(Icons.add, color: color, size: 20)),
             ),
           ],
         ),
@@ -486,17 +516,17 @@ class _MealSlotCard extends StatelessWidget {
                     const SizedBox(width: 3),
                     Text(
                       '${recipe!.time} min',
-                      style: const TextStyle(
-                          fontSize: 12, color: kTextLight),
+                      style: const TextStyle(fontSize: 12, color: kTextLight),
                     ),
                     const SizedBox(width: 10),
-                    const Icon(Iconsax.flash_1,
-                        color: kPrimaryColor, size: 12),
+                    const Icon(Iconsax.flash_1, color: kPrimaryColor, size: 12),
                     const SizedBox(width: 3),
                     Text(
                       '${recipe!.calories} cal',
                       style: const TextStyle(
-                          fontSize: 12, color: kPrimaryColor),
+                        fontSize: 12,
+                        color: kPrimaryColor,
+                      ),
                     ),
                   ],
                 ),
@@ -514,8 +544,7 @@ class _MealSlotCard extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: const Center(
-                child: Icon(Icons.close,
-                    color: Colors.red, size: 16),
+                child: Icon(Icons.close, color: Colors.red, size: 16),
               ),
             ),
           ),
@@ -550,10 +579,12 @@ class _PickRecipeSheetState extends State<_PickRecipeSheet> {
     final filtered = _query.isEmpty
         ? allRecipes
         : allRecipes
-            .where((r) =>
-                r.name.toLowerCase().contains(_query.toLowerCase()) ||
-                r.category.toLowerCase().contains(_query.toLowerCase()))
-            .toList();
+              .where(
+                (r) =>
+                    r.name.toLowerCase().contains(_query.toLowerCase()) ||
+                    r.category.toLowerCase().contains(_query.toLowerCase()),
+              )
+              .toList();
 
     return Container(
       height: MediaQuery.of(context).size.height * 0.78,
@@ -568,8 +599,9 @@ class _PickRecipeSheetState extends State<_PickRecipeSheet> {
             width: 40,
             height: 5,
             decoration: BoxDecoration(
-                color: dragHandle,
-                borderRadius: BorderRadius.circular(10)),
+              color: dragHandle,
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           const SizedBox(height: 16),
           Padding(
@@ -609,8 +641,11 @@ class _PickRecipeSheetState extends State<_PickRecipeSheet> {
           Expanded(
             child: filtered.isEmpty
                 ? Center(
-                    child: Text('No recipes found',
-                        style: TextStyle(color: textLight)))
+                    child: Text(
+                      'No recipes found',
+                      style: TextStyle(color: textLight),
+                    ),
+                  )
                 : ListView.builder(
                     physics: const BouncingScrollPhysics(),
                     padding: const EdgeInsets.symmetric(horizontal: 18),
@@ -641,12 +676,14 @@ class _PickRecipeSheetState extends State<_PickRecipeSheet> {
                                   fit: BoxFit.cover,
                                   errorBuilder: (context, error, stackTrace) =>
                                       Container(
-                                    width: 56,
-                                    height: 56,
-                                    color: Colors.grey.shade200,
-                                    child: const Icon(Icons.fastfood,
-                                        color: Colors.grey),
-                                  ),
+                                        width: 56,
+                                        height: 56,
+                                        color: Colors.grey.shade200,
+                                        child: const Icon(
+                                          Icons.fastfood,
+                                          color: Colors.grey,
+                                        ),
+                                      ),
                                 ),
                               ),
                               const SizedBox(width: 12),
@@ -666,13 +703,18 @@ class _PickRecipeSheetState extends State<_PickRecipeSheet> {
                                     Text(
                                       '${r.category} \u2022 ${r.time} min \u2022 ${r.calories} cal',
                                       style: TextStyle(
-                                          fontSize: 12, color: textLight),
+                                        fontSize: 12,
+                                        color: textLight,
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
-                              const Icon(Icons.chevron_right,
-                                  color: kTextLight, size: 20),
+                              const Icon(
+                                Icons.chevron_right,
+                                color: kTextLight,
+                                size: 20,
+                              ),
                             ],
                           ),
                         ),

@@ -28,10 +28,10 @@ class _CookingModeScreenState extends State<CookingModeScreen>
       vsync: this,
       duration: const Duration(milliseconds: 350),
     );
-    _slideIn = Tween<Offset>(
-      begin: const Offset(0.12, 0),
-      end: Offset.zero,
-    ).animate(CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic));
+    _slideIn = Tween<Offset>(begin: const Offset(0.12, 0), end: Offset.zero)
+        .animate(
+          CurvedAnimation(parent: _slideController, curve: Curves.easeOutCubic),
+        );
     _fadeIn = CurvedAnimation(parent: _slideController, curve: Curves.easeOut);
     _slideController.forward();
   }
@@ -80,7 +80,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
     final cardBg = isDark ? const Color(0xFF1A1D2E) : Colors.white;
     final closeBtnBg = isDark ? const Color(0xFF1A1D2E) : Colors.white;
     final navBtnBg = isDark ? const Color(0xFF1A1D2E) : Colors.white;
-    final progressBg = isDark ? const Color(0xFF2A2D42) : const Color(0xFFEEEEEE);
+    final progressBg = isDark
+        ? const Color(0xFF2A2D42)
+        : const Color(0xFFEEEEEE);
 
     return SafeArea(
       child: Column(
@@ -103,7 +105,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                       borderRadius: BorderRadius.circular(12),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.07),
+                          color: Colors.black.withValues(
+                            alpha: isDark ? 0.3 : 0.07,
+                          ),
                           blurRadius: 8,
                           offset: const Offset(0, 2),
                         ),
@@ -170,8 +174,14 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                   widget.recipe.image,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
-                    color: isDark ? const Color(0xFF252838) : const Color(0xFFF0F0F0),
-                    child: const Icon(Icons.image, color: Colors.grey, size: 48),
+                    color: isDark
+                        ? const Color(0xFF252838)
+                        : const Color(0xFFF0F0F0),
+                    child: const Icon(
+                      Icons.image,
+                      color: Colors.grey,
+                      size: 48,
+                    ),
                   ),
                 ),
               ),
@@ -194,7 +204,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                       borderRadius: BorderRadius.circular(24),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.06),
+                          color: Colors.black.withValues(
+                            alpha: isDark ? 0.3 : 0.06,
+                          ),
                           blurRadius: 20,
                           offset: const Offset(0, 6),
                         ),
@@ -205,7 +217,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(
-                              horizontal: 14, vertical: 6),
+                            horizontal: 14,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             color: kPrimaryColor,
                             borderRadius: BorderRadius.circular(10),
@@ -259,7 +273,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: [
                           BoxShadow(
-                            color: Colors.black.withValues(alpha: isDark ? 0.3 : 0.07),
+                            color: Colors.black.withValues(
+                              alpha: isDark ? 0.3 : 0.07,
+                            ),
                             blurRadius: 10,
                             offset: const Offset(0, 3),
                           ),
@@ -312,8 +328,11 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                             ),
                             if (_currentStep < _totalSteps - 1) ...[
                               const SizedBox(width: 8),
-                              const Icon(Icons.arrow_forward_ios,
-                                  color: Colors.white, size: 15),
+                              const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                                size: 15,
+                              ),
                             ],
                           ],
                         ),
@@ -367,10 +386,7 @@ class _CookingModeScreenState extends State<CookingModeScreen>
             const SizedBox(height: 10),
             Text(
               '${widget.recipe.name} is ready to serve. Enjoy your meal! 🍽️',
-              style: const TextStyle(
-                fontSize: 16,
-                height: 1.5,
-              ),
+              style: const TextStyle(fontSize: 16, height: 1.5),
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 36),
@@ -383,7 +399,9 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => Container(
                   height: 200,
-                  color: isDark ? const Color(0xFF252838) : const Color(0xFFF0F0F0),
+                  color: isDark
+                      ? const Color(0xFF252838)
+                      : const Color(0xFFF0F0F0),
                 ),
               ),
             ),
@@ -408,7 +426,8 @@ class _CookingModeScreenState extends State<CookingModeScreen>
                 style: ElevatedButton.styleFrom(
                   backgroundColor: kPrimaryColor,
                   shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16)),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
                   elevation: 0,
                 ),
               ),

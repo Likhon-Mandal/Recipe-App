@@ -16,13 +16,15 @@ ThemeData darkTheme() {
 ThemeData _buildTheme(Brightness brightness) {
   final isDark = brightness == Brightness.dark;
 
-  final Color background  = isDark ? const Color(0xFF0F1117) : kBackgroundColor;
-  final Color surface     = isDark ? const Color(0xFF1C1F2E) : Colors.white;
-  final Color card        = isDark ? const Color(0xFF252839) : Colors.white;
+  final Color background = isDark ? const Color(0xFF0F1117) : kBackgroundColor;
+  final Color surface = isDark ? const Color(0xFF1C1F2E) : Colors.white;
+  final Color card = isDark ? const Color(0xFF252839) : Colors.white;
   final Color textPrimary = isDark ? const Color(0xFFF1F3F8) : kTextPrimary;
-  final Color textSec     = isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
-  final Color textLight   = isDark ? const Color(0xFF6B7A96) : kTextLight;
-  final Color divider     = isDark ? const Color(0xFF2E3348) : const Color(0xFFEEEEEE);
+  final Color textSec = isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
+  final Color textLight = isDark ? const Color(0xFF6B7A96) : kTextLight;
+  final Color divider = isDark
+      ? const Color(0xFF2E3348)
+      : const Color(0xFFEEEEEE);
 
   final systemOverlay = isDark
       ? SystemUiOverlayStyle.light.copyWith(
@@ -56,17 +58,32 @@ ThemeData _buildTheme(Brightness brightness) {
     dividerColor: divider,
     textTheme: GoogleFonts.interTextTheme().copyWith(
       displayLarge: GoogleFonts.inter(
-          fontSize: 32, fontWeight: FontWeight.w800, color: textPrimary),
+        fontSize: 32,
+        fontWeight: FontWeight.w800,
+        color: textPrimary,
+      ),
       displayMedium: GoogleFonts.inter(
-          fontSize: 26, fontWeight: FontWeight.w700, color: textPrimary),
+        fontSize: 26,
+        fontWeight: FontWeight.w700,
+        color: textPrimary,
+      ),
       titleLarge: GoogleFonts.inter(
-          fontSize: 20, fontWeight: FontWeight.w700, color: textPrimary),
+        fontSize: 20,
+        fontWeight: FontWeight.w700,
+        color: textPrimary,
+      ),
       titleMedium: GoogleFonts.inter(
-          fontSize: 16, fontWeight: FontWeight.w600, color: textPrimary),
+        fontSize: 16,
+        fontWeight: FontWeight.w600,
+        color: textPrimary,
+      ),
       bodyLarge: GoogleFonts.inter(fontSize: 15, color: textPrimary),
       bodyMedium: GoogleFonts.inter(fontSize: 14, color: textSec),
       labelLarge: GoogleFonts.inter(
-          fontSize: 15, fontWeight: FontWeight.w600, color: Colors.white),
+        fontSize: 15,
+        fontWeight: FontWeight.w600,
+        color: Colors.white,
+      ),
       labelSmall: GoogleFonts.inter(fontSize: 11, color: textLight),
     ),
     appBarTheme: AppBarTheme(
@@ -85,12 +102,11 @@ ThemeData _buildTheme(Brightness brightness) {
         backgroundColor: kPrimaryColor,
         foregroundColor: Colors.white,
         elevation: 0,
-        padding:
-            const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kButtonRadius)),
-        textStyle:
-            GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600),
+          borderRadius: BorderRadius.circular(kButtonRadius),
+        ),
+        textStyle: GoogleFonts.inter(fontSize: 15, fontWeight: FontWeight.w600),
       ),
     ),
     switchTheme: SwitchThemeData(
@@ -108,8 +124,7 @@ ThemeData _buildTheme(Brightness brightness) {
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: surface,
-      contentPadding:
-          const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
         borderSide: BorderSide.none,
@@ -120,21 +135,20 @@ ThemeData _buildTheme(Brightness brightness) {
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(16),
-        borderSide:
-            const BorderSide(color: kPrimaryColor, width: 1.5),
+        borderSide: const BorderSide(color: kPrimaryColor, width: 1.5),
       ),
     ),
     dialogTheme: DialogThemeData(
       backgroundColor: card,
-      shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
     ),
     snackBarTheme: SnackBarThemeData(
-      backgroundColor: isDark ? const Color(0xFF252839) : const Color(0xFF1A1A2E),
+      backgroundColor: isDark
+          ? const Color(0xFF252839)
+          : const Color(0xFF1A1A2E),
       contentTextStyle: GoogleFonts.inter(color: Colors.white, fontSize: 14),
       behavior: SnackBarBehavior.floating,
-      shape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
     ),
   );
 }

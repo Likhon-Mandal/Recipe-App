@@ -6,7 +6,7 @@ class MealPlanRepository {
   final AuthService _authService;
 
   MealPlanRepository({required AuthService authService})
-      : _authService = authService;
+    : _authService = authService;
 
   String? get _uid => _authService.currentUser?.uid;
 
@@ -33,7 +33,9 @@ class MealPlanRepository {
   Future<Map<String, String>> loadWeekPlan() async {
     try {
       final snapshot = await _weekRef.get();
-      return {for (var doc in snapshot.docs) doc.id: doc.data()['recipeId'] as String};
+      return {
+        for (var doc in snapshot.docs) doc.id: doc.data()['recipeId'] as String,
+      };
     } catch (e) {
       return {};
     }
@@ -41,7 +43,11 @@ class MealPlanRepository {
 
   Future<void> setMeal(String day, String slot, String recipeId) async {
     final key = '${day}_$slot';
-    await _weekRef.doc(key).set({'recipeId': recipeId, 'day': day, 'slot': slot});
+    await _weekRef.doc(key).set({
+      'recipeId': recipeId,
+      'day': day,
+      'slot': slot,
+    });
   }
 
   Future<void> removeMeal(String day, String slot) async {

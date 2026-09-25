@@ -44,10 +44,12 @@ class _HomeScreenState extends State<HomeScreen>
       return Tween<Offset>(
         begin: const Offset(0, 0.3),
         end: Offset.zero,
-      ).animate(CurvedAnimation(
-        parent: _staggerController,
-        curve: Interval(start, end, curve: Curves.easeOutCubic),
-      ));
+      ).animate(
+        CurvedAnimation(
+          parent: _staggerController,
+          curve: Interval(start, end, curve: Curves.easeOutCubic),
+        ),
+      );
     });
     _fadeAnimations = List.generate(_sectionCount, (i) {
       final start = i * 0.12;
@@ -70,8 +72,7 @@ class _HomeScreenState extends State<HomeScreen>
   Widget _stagger(int index, Widget child) {
     return FadeTransition(
       opacity: _fadeAnimations[index],
-      child:
-          SlideTransition(position: _slideAnimations[index], child: child),
+      child: SlideTransition(position: _slideAnimations[index], child: child),
     );
   }
 
@@ -83,10 +84,8 @@ class _HomeScreenState extends State<HomeScreen>
   @override
   Widget build(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final textPrimary =
-        isDark ? const Color(0xFFF0F2FA) : kTextPrimary;
-    final textSecondary =
-        isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
+    final textPrimary = isDark ? const Color(0xFFF0F2FA) : kTextPrimary;
+    final textSecondary = isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
 
     return SafeArea(
       bottom: false,
@@ -114,11 +113,12 @@ class _HomeScreenState extends State<HomeScreen>
 
                   // 1: Search bar
                   _stagger(
-                      1,
-                      MySearchBar(
-                        onChanged: (value) =>
-                            context.read<RecipeProvider>().setSearchQuery(value),
-                      )),
+                    1,
+                    MySearchBar(
+                      onChanged: (value) =>
+                          context.read<RecipeProvider>().setSearchQuery(value),
+                    ),
+                  ),
                   const SizedBox(height: 20),
 
                   // 2: Banner
@@ -127,85 +127,89 @@ class _HomeScreenState extends State<HomeScreen>
 
                   // 3: Categories
                   _stagger(
-                      3,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "Categories",
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w700,
-                              color: textPrimary,
-                            ),
+                    3,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Categories",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w700,
+                            color: textPrimary,
                           ),
-                          const SizedBox(height: 14),
-                          Consumer<RecipeProvider>(
-                            builder: (context, recipeProvider, child) {
-                              return CategorySelector(
-                                categories: categories,
-                                selectedCategory:
-                                    recipeProvider.selectedCategory,
-                                onSelect: recipeProvider.setCategory,
-                              );
-                            },
-                          ),
-                        ],
-                      )),
+                        ),
+                        const SizedBox(height: 14),
+                        Consumer<RecipeProvider>(
+                          builder: (context, recipeProvider, child) {
+                            return CategorySelector(
+                              categories: categories,
+                              selectedCategory: recipeProvider.selectedCategory,
+                              onSelect: recipeProvider.setCategory,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   const SizedBox(height: 24),
 
                   // 4: Recipe grid
                   _stagger(
-                      4,
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SectionHeader(
-                            title: "Quick & Easy",
-                            onActionTap: () {},
-                          ),
-                          const SizedBox(height: 14),
-                          Consumer<RecipeProvider>(
-                            builder: (context, recipeProvider, child) {
-                              if (recipeProvider.isLoading) {
-                                return const Center(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(40),
-                                    child: CircularProgressIndicator(
-                                      color: kPrimaryColor,
-                                      strokeWidth: 2.5,
-                                    ),
+                    4,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SectionHeader(
+                          title: "Quick & Easy",
+                          onActionTap: () {},
+                        ),
+                        const SizedBox(height: 14),
+                        Consumer<RecipeProvider>(
+                          builder: (context, recipeProvider, child) {
+                            if (recipeProvider.isLoading) {
+                              return const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(40),
+                                  child: CircularProgressIndicator(
+                                    color: kPrimaryColor,
+                                    strokeWidth: 2.5,
                                   ),
-                                );
-                              }
-                              if (recipeProvider.error != null) {
-                                return _buildError(
-                                    recipeProvider.error!, textSecondary);
-                              }
-                              final recipes = recipeProvider.filteredRecipes;
-                              if (recipes.isEmpty) {
-                                return _buildEmptySearch(
-                                    textPrimary, textSecondary);
-                              }
-                              return GridView.builder(
-                                shrinkWrap: true,
-                                physics:
-                                    const NeverScrollableScrollPhysics(),
-                                gridDelegate:
-                                    const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 220,
-                                  crossAxisSpacing: 14,
-                                  mainAxisSpacing: 14,
-                                  childAspectRatio: 0.75,
                                 ),
-                                itemCount: recipes.length,
-                                itemBuilder: (context, index) =>
-                                    RecipeCard(recipe: recipes[index]),
                               );
-                            },
-                          ),
-                        ],
-                      )),
+                            }
+                            if (recipeProvider.error != null) {
+                              return _buildError(
+                                recipeProvider.error!,
+                                textSecondary,
+                              );
+                            }
+                            final recipes = recipeProvider.filteredRecipes;
+                            if (recipes.isEmpty) {
+                              return _buildEmptySearch(
+                                textPrimary,
+                                textSecondary,
+                              );
+                            }
+                            return GridView.builder(
+                              shrinkWrap: true,
+                              physics: const NeverScrollableScrollPhysics(),
+                              gridDelegate:
+                                  const SliverGridDelegateWithMaxCrossAxisExtent(
+                                    maxCrossAxisExtent: 220,
+                                    crossAxisSpacing: 14,
+                                    mainAxisSpacing: 14,
+                                    childAspectRatio: 0.75,
+                                  ),
+                              itemCount: recipes.length,
+                              itemBuilder: (context, index) =>
+                                  RecipeCard(recipe: recipes[index]),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                 ]),
               ),
             ),
@@ -221,16 +225,16 @@ class _HomeScreenState extends State<HomeScreen>
         padding: const EdgeInsets.all(24),
         child: Column(
           children: [
-            const Icon(Icons.error_outline,
-                color: Colors.redAccent, size: 48),
+            const Icon(Icons.error_outline, color: Colors.redAccent, size: 48),
             const SizedBox(height: 12),
-            Text(error,
-                textAlign: TextAlign.center,
-                style: TextStyle(color: textColor)),
+            Text(
+              error,
+              textAlign: TextAlign.center,
+              style: TextStyle(color: textColor),
+            ),
             const SizedBox(height: 16),
             ElevatedButton(
-              onPressed: () =>
-                  context.read<RecipeProvider>().fetchRecipes(),
+              onPressed: () => context.read<RecipeProvider>().fetchRecipes(),
               child: const Text('Retry'),
             ),
           ],

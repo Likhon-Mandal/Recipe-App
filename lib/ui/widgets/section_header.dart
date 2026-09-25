@@ -18,16 +18,11 @@ class SectionHeader extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
         TextButton(
           onPressed: onActionTap,
-          style: TextButton.styleFrom(
-            foregroundColor: kPrimaryColor,
-          ),
+          style: TextButton.styleFrom(foregroundColor: kPrimaryColor),
           child: const Text("View all"),
         ),
       ],

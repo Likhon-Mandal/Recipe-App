@@ -5,7 +5,7 @@ import '../repositories/recipe_repository.dart';
 
 class RecipeProvider extends ChangeNotifier {
   final RecipeRepository _repository;
-  
+
   List<Recipe> _recipes = [];
   bool _isLoading = false;
   String? _error;
@@ -14,7 +14,8 @@ class RecipeProvider extends ChangeNotifier {
 
   Timer? _debounce;
 
-  RecipeProvider({required RecipeRepository repository}) : _repository = repository;
+  RecipeProvider({required RecipeRepository repository})
+    : _repository = repository;
 
   // Getters
   List<Recipe> get recipes => _recipes;
@@ -25,13 +26,17 @@ class RecipeProvider extends ChangeNotifier {
 
   List<Recipe> get filteredRecipes {
     return _recipes.where((recipe) {
-      final matchesCategory = _selectedCategory == 'All' || recipe.category == _selectedCategory;
-      
+      final matchesCategory =
+          _selectedCategory == 'All' || recipe.category == _selectedCategory;
+
       final query = _searchQuery.toLowerCase();
-      final matchesSearch = query.isEmpty || 
+      final matchesSearch =
+          query.isEmpty ||
           recipe.name.toLowerCase().contains(query) ||
-          recipe.ingredients.any((ing) => ing.name.toLowerCase().contains(query));
-          
+          recipe.ingredients.any(
+            (ing) => ing.name.toLowerCase().contains(query),
+          );
+
       return matchesCategory && matchesSearch;
     }).toList();
   }
@@ -57,7 +62,7 @@ class RecipeProvider extends ChangeNotifier {
   // Set Search Query with Debounce
   void setSearchQuery(String query) {
     if (_debounce?.isActive ?? false) _debounce!.cancel();
-    
+
     _debounce = Timer(const Duration(milliseconds: 300), () {
       if (_searchQuery != query) {
         _searchQuery = query;

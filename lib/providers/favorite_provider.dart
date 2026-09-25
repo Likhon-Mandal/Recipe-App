@@ -7,7 +7,8 @@ class FavoriteProvider extends ChangeNotifier {
   bool _isLoading = false;
   String? _error;
 
-  FavoriteProvider({required UserRepository repository}) : _repository = repository;
+  FavoriteProvider({required UserRepository repository})
+    : _repository = repository;
 
   List<String> get favoriteIds => _favoriteIds;
   bool get isLoading => _isLoading;

@@ -11,8 +11,8 @@ class UserRepository {
   UserRepository({
     required AuthService authService,
     FirestoreService? firestoreService,
-  })  : _authService = authService,
-        _firestoreService = firestoreService ?? FirestoreService();
+  }) : _authService = authService,
+       _firestoreService = firestoreService ?? FirestoreService();
 
   Future<List<String>> getFavorites() async {
     final user = _authService.currentUser;

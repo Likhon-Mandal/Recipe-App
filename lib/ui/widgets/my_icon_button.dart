@@ -22,20 +22,14 @@ class MyIconButton extends StatelessWidget {
 
     return IconButton(
       style: IconButton.styleFrom(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         backgroundColor: bgColor,
         fixedSize: const Size(50, 50),
         elevation: 2,
         shadowColor: Colors.black.withAlpha(isDark ? 60 : 20),
       ),
       onPressed: pressed,
-      icon: Icon(
-        icon,
-        size: size,
-        color: iconColor ?? defaultIconColor,
-      ),
+      icon: Icon(icon, size: size, color: iconColor ?? defaultIconColor),
     );
   }
 }

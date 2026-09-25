@@ -36,20 +36,18 @@ void main() async {
           create: (_) => app_auth.AuthProvider(authService: authService),
         ),
         ChangeNotifierProvider(
-          create: (_) => RecipeProvider(repository: recipeRepository)..fetchRecipes(),
+          create: (_) =>
+              RecipeProvider(repository: recipeRepository)..fetchRecipes(),
         ),
         ChangeNotifierProvider(
-          create: (_) => FavoriteProvider(repository: userRepository)..fetchFavorites(),
+          create: (_) =>
+              FavoriteProvider(repository: userRepository)..fetchFavorites(),
         ),
         ChangeNotifierProvider(
           create: (_) => MealPlanProvider(repository: mealPlanRepository),
         ),
-        ChangeNotifierProvider(
-          create: (_) => QuantityProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => SettingsProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => QuantityProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
       child: const RecipeApp(),
     ),

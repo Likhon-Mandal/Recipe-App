@@ -12,7 +12,8 @@ class AuthProvider extends ChangeNotifier {
   bool _isGuest = false;
   String? _error;
 
-  AuthProvider({required AuthService authService}) : _authService = authService {
+  AuthProvider({required AuthService authService})
+    : _authService = authService {
     _authService.authStateChanges.listen((user) async {
       final wasSignedOut = _user == null;
       _user = user;

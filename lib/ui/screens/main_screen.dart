@@ -22,9 +22,21 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
 
   static const List<_NavItem> _navItems = [
     _NavItem(icon: Iconsax.home, activeIcon: Iconsax.home_24, label: 'Home'),
-    _NavItem(icon: Iconsax.heart, activeIcon: Iconsax.heart5, label: 'Favourites'),
-    _NavItem(icon: Iconsax.calendar_1, activeIcon: Iconsax.calendar5, label: 'Meal Plan'),
-    _NavItem(icon: Iconsax.setting_2, activeIcon: Iconsax.setting_21, label: 'Settings'),
+    _NavItem(
+      icon: Iconsax.heart,
+      activeIcon: Iconsax.heart5,
+      label: 'Favourites',
+    ),
+    _NavItem(
+      icon: Iconsax.calendar_1,
+      activeIcon: Iconsax.calendar5,
+      label: 'Meal Plan',
+    ),
+    _NavItem(
+      icon: Iconsax.setting_2,
+      activeIcon: Iconsax.setting_21,
+      label: 'Settings',
+    ),
   ];
 
   final List<Widget> _pages = const [
@@ -73,8 +85,10 @@ class _MainScreenState extends State<MainScreen> with TickerProviderStateMixin {
       ),
       extendBody: true,
       bottomNavigationBar: SlideTransition(
-        position: Tween<Offset>(begin: const Offset(0, 1.5), end: Offset.zero)
-            .animate(_navBarAnimation),
+        position: Tween<Offset>(
+          begin: const Offset(0, 1.5),
+          end: Offset.zero,
+        ).animate(_navBarAnimation),
         child: _buildBottomNav(),
       ),
     );
@@ -200,7 +214,9 @@ class _NavBarItemState extends State<_NavBarItem>
                   duration: const Duration(milliseconds: 300),
                   curve: Curves.easeOutCubic,
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 16, vertical: 8),
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   decoration: BoxDecoration(
                     color: widget.isSelected
                         ? kPrimaryColor.withValues(alpha: 0.14)
@@ -293,10 +309,7 @@ class _AnimatedPageSwitcherState extends State<_AnimatedPageSwitcher>
       opacity: _fadeAnim,
       child: SlideTransition(
         position: _slideAnim,
-        child: IndexedStack(
-          index: widget.index,
-          children: widget.children,
-        ),
+        child: IndexedStack(index: widget.index, children: widget.children),
       ),
     );
   }

@@ -21,10 +21,6 @@ class CategoryModel {
   }
 
   Map<String, dynamic> toFirestore() {
-    return {
-      'name': name,
-      'icon': icon,
-      'order': order,
-    };
+    return {'name': name, 'icon': icon, 'order': order};
   }
 }

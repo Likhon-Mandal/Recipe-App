@@ -11,12 +11,18 @@ class MealPlanProvider extends ChangeNotifier {
   String? _error;
 
   static const List<String> days = [
-    'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'
+    'monday',
+    'tuesday',
+    'wednesday',
+    'thursday',
+    'friday',
+    'saturday',
+    'sunday',
   ];
   static const List<String> slots = ['breakfast', 'lunch', 'dinner'];
 
   MealPlanProvider({required MealPlanRepository repository})
-      : _repository = repository;
+    : _repository = repository;
 
   Map<String, Map<String, Recipe>> get plan => _plan;
   bool get isLoading => _isLoading;
@@ -28,7 +34,9 @@ class MealPlanProvider extends ChangeNotifier {
 
   int get totalMealsPlanned {
     int count = 0;
-    for (var dayMap in _plan.values) { count += dayMap.length; }
+    for (var dayMap in _plan.values) {
+      count += dayMap.length;
+    }
     return count;
   }
 
@@ -44,7 +52,9 @@ class MealPlanProvider extends ChangeNotifier {
       for (final entry in entries.entries) {
         // key format: "monday_breakfast"
         final parts = entry.key.split('_');
-        if (parts.length < 2) { continue; }
+        if (parts.length < 2) {
+          continue;
+        }
         final day = parts[0];
         final slot = parts.sublist(1).join('_');
         final recipe = allRecipes.where((r) => r.id == entry.value).firstOrNull;

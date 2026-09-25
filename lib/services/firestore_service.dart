@@ -78,9 +78,7 @@ class FirestoreService {
         .collection(subcollection)
         .get();
 
-    return snapshot.docs
-        .map((doc) => builder(doc.id, doc.data()))
-        .toList();
+    return snapshot.docs.map((doc) => builder(doc.id, doc.data())).toList();
   }
 
   Future<void> setSubcollectionDocument({

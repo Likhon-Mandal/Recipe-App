@@ -66,17 +66,10 @@ class HomeAppBar extends StatelessWidget {
           ),
           child: user?.photoURL != null
               ? ClipOval(
-                  child: Image.network(
-                    user!.photoURL!,
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.network(user!.photoURL!, fit: BoxFit.cover),
                 )
               : Center(
-                  child: Icon(
-                    Iconsax.user,
-                    size: 20,
-                    color: kPrimaryColor,
-                  ),
+                  child: Icon(Iconsax.user, size: 20, color: kPrimaryColor),
                 ),
         ),
       ],

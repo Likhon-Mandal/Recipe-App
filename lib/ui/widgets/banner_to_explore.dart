@@ -117,9 +117,10 @@ class _ExploreButtonState extends State<_ExploreButton>
       lowerBound: 0.0,
       upperBound: 1.0,
     );
-    _scaleAnim = Tween(begin: 1.0, end: 0.94).animate(
-      CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
-    );
+    _scaleAnim = Tween(
+      begin: 1.0,
+      end: 0.94,
+    ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeInOut));
   }
 
   @override

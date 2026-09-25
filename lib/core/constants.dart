@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
 // Brand Colors
-const Color kPrimaryColor = Color(0xFF800000);       // Maroon
-const Color kPrimaryLight = Color(0xFFA52A2A);        // Lighter maroon
-const Color kPrimaryDark = Color(0xFF4C0000);         // Darker maroon
+const Color kPrimaryColor = Color(0xFF800000); // Maroon
+const Color kPrimaryLight = Color(0xFFA52A2A); // Lighter maroon
+const Color kPrimaryDark = Color(0xFF4C0000); // Darker maroon
 const Color kBannerColor = Color(0xFF800000);
 
 // Background Colors
-const Color kBackgroundColor = Color(0xFFF8F9FA);     // Warm off-white
+const Color kBackgroundColor = Color(0xFFF8F9FA); // Warm off-white
 const Color kCardColor = Colors.white;
-const Color kSurfaceColor = Color(0xFFFFF0F0);        // Light maroon tint
+const Color kSurfaceColor = Color(0xFFFFF0F0); // Light maroon tint
 
 // Text Colors
 const Color kTextPrimary = Color(0xFF1A1A2E);

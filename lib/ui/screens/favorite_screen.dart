@@ -44,10 +44,8 @@ class FavoriteScreen extends StatelessWidget {
 
                   return AnimatedSwitcher(
                     duration: const Duration(milliseconds: 350),
-                    transitionBuilder: (child, animation) => FadeTransition(
-                      opacity: animation,
-                      child: child,
-                    ),
+                    transitionBuilder: (child, animation) =>
+                        FadeTransition(opacity: animation, child: child),
                     child: favoriteRecipes.isEmpty
                         ? _buildEmpty(context, isDark)
                         : _buildGrid(favoriteRecipes),
@@ -65,10 +63,12 @@ class FavoriteScreen extends StatelessWidget {
     final authProvider = context.read<AuthProvider>();
     final user = authProvider.user;
     final headerBg = isDark ? const Color(0xFF1A1D2E) : Colors.white;
-    final titleColor =
-        isDark ? const Color(0xFFF0F2FA) : const Color(0xFF1A1A2E);
-    final subtitleColor =
-        isDark ? const Color(0xFF6B7A96) : const Color(0xFF9E9E9E);
+    final titleColor = isDark
+        ? const Color(0xFFF0F2FA)
+        : const Color(0xFF1A1A2E);
+    final subtitleColor = isDark
+        ? const Color(0xFF6B7A96)
+        : const Color(0xFF9E9E9E);
     final countBg = isDark
         ? kFavoriteColor.withValues(alpha: 0.15)
         : const Color(0xFFFFECE4);
@@ -102,10 +102,7 @@ class FavoriteScreen extends StatelessWidget {
                         padding: const EdgeInsets.only(top: 2),
                         child: Text(
                           user.displayName ?? user.email ?? '',
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: subtitleColor,
-                          ),
+                          style: TextStyle(fontSize: 13, color: subtitleColor),
                         ),
                       ),
                   ],
@@ -146,8 +143,7 @@ class FavoriteScreen extends StatelessWidget {
           const SizedBox(height: 12),
           Consumer<FavoriteProvider>(
             builder: (context, fp, _) => Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
                 color: countBg,
                 borderRadius: BorderRadius.circular(20),
@@ -155,8 +151,7 @@ class FavoriteScreen extends StatelessWidget {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const Icon(Iconsax.heart5,
-                      color: kFavoriteColor, size: 14),
+                  const Icon(Iconsax.heart5, color: kFavoriteColor, size: 14),
                   const SizedBox(width: 6),
                   Text(
                     '${fp.count} recipe${fp.count == 1 ? '' : 's'} saved',
@@ -191,8 +186,7 @@ class FavoriteScreen extends StatelessWidget {
         return TweenAnimationBuilder<double>(
           key: ValueKey(favoriteRecipes[index].id),
           tween: Tween(begin: 0.0, end: 1.0),
-          duration:
-              Duration(milliseconds: 250 + (index * 40).clamp(0, 400)),
+          duration: Duration(milliseconds: 250 + (index * 40).clamp(0, 400)),
           curve: Curves.easeOutCubic,
           builder: (context, value, child) => Opacity(
             opacity: value,
@@ -208,10 +202,12 @@ class FavoriteScreen extends StatelessWidget {
   }
 
   Widget _buildEmpty(BuildContext context, bool isDark) {
-    final titleColor =
-        isDark ? const Color(0xFFF0F2FA) : const Color(0xFF1A1A2E);
-    final subtitleColor =
-        isDark ? const Color(0xFF9AA5BB) : const Color(0xFF9E9E9E);
+    final titleColor = isDark
+        ? const Color(0xFFF0F2FA)
+        : const Color(0xFF1A1A2E);
+    final subtitleColor = isDark
+        ? const Color(0xFF9AA5BB)
+        : const Color(0xFF9E9E9E);
     final emptyBg = isDark
         ? kFavoriteColor.withValues(alpha: 0.12)
         : const Color(0xFFFFECE4);
@@ -244,11 +240,7 @@ class FavoriteScreen extends StatelessWidget {
                   ],
                 ),
                 child: const Center(
-                  child: Icon(
-                    Iconsax.heart,
-                    size: 52,
-                    color: kFavoriteColor,
-                  ),
+                  child: Icon(Iconsax.heart, size: 52, color: kFavoriteColor),
                 ),
               ),
             ),
@@ -265,11 +257,7 @@ class FavoriteScreen extends StatelessWidget {
             Text(
               'Tap the ❤️ on any recipe to\nsave it here for later.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                color: subtitleColor,
-                height: 1.6,
-              ),
+              style: TextStyle(fontSize: 15, color: subtitleColor, height: 1.6),
             ),
           ],
         ),
@@ -278,10 +266,12 @@ class FavoriteScreen extends StatelessWidget {
   }
 
   Widget _buildGuestPrompt(BuildContext context, bool isDark) {
-    final titleColor =
-        isDark ? const Color(0xFFF0F2FA) : const Color(0xFF1A1A2E);
-    final subtitleColor =
-        isDark ? const Color(0xFF9AA5BB) : const Color(0xFF9E9E9E);
+    final titleColor = isDark
+        ? const Color(0xFFF0F2FA)
+        : const Color(0xFF1A1A2E);
+    final subtitleColor = isDark
+        ? const Color(0xFF9AA5BB)
+        : const Color(0xFF9E9E9E);
     final emptyBg = isDark
         ? kPrimaryColor.withValues(alpha: 0.12)
         : const Color(0xFFE8F5E9);
@@ -308,11 +298,7 @@ class FavoriteScreen extends StatelessWidget {
                 ],
               ),
               child: const Center(
-                child: Icon(
-                  Iconsax.user,
-                  size: 52,
-                  color: kPrimaryColor,
-                ),
+                child: Icon(Iconsax.user, size: 52, color: kPrimaryColor),
               ),
             ),
             const SizedBox(height: 28),
@@ -328,11 +314,7 @@ class FavoriteScreen extends StatelessWidget {
             Text(
               'Create an account to save your\nfavorite recipes across all devices.',
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 15,
-                color: subtitleColor,
-                height: 1.6,
-              ),
+              style: TextStyle(fontSize: 15, color: subtitleColor, height: 1.6),
             ),
             const SizedBox(height: 32),
             ElevatedButton(
@@ -342,7 +324,10 @@ class FavoriteScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(
                 backgroundColor: kPrimaryColor,
                 foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 32,
+                  vertical: 16,
+                ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),
                 ),
@@ -364,15 +349,11 @@ class FavoriteScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.error_outline,
-              color: Color(0xFFE53935), size: 48),
+          const Icon(Icons.error_outline, color: Color(0xFFE53935), size: 48),
           const SizedBox(height: 16),
           Text(
             error,
-            style: const TextStyle(
-              color: Color(0xFFE53935),
-              fontSize: 15,
-            ),
+            style: const TextStyle(color: Color(0xFFE53935), fontSize: 15),
           ),
         ],
       ),
@@ -381,10 +362,10 @@ class FavoriteScreen extends StatelessWidget {
 
   void _showSignOutDialog(BuildContext context, bool isDark) {
     final dialogBg = isDark ? const Color(0xFF1A1D2E) : Colors.white;
-    final titleColor =
-        isDark ? const Color(0xFFF0F2FA) : const Color(0xFF1A1A2E);
-    final cancelBg =
-        isDark ? const Color(0xFF252838) : const Color(0xFFF3F4F6);
+    final titleColor = isDark
+        ? const Color(0xFFF0F2FA)
+        : const Color(0xFF1A1A2E);
+    final cancelBg = isDark ? const Color(0xFF252838) : const Color(0xFFF3F4F6);
 
     showGeneralDialog(
       context: context,
@@ -395,8 +376,10 @@ class FavoriteScreen extends StatelessWidget {
       transitionBuilder: (ctx, anim, _, child) => FadeTransition(
         opacity: anim,
         child: ScaleTransition(
-          scale: Tween<double>(begin: 0.88, end: 1.0).animate(
-              CurvedAnimation(parent: anim, curve: Curves.easeOutBack)),
+          scale: Tween<double>(
+            begin: 0.88,
+            end: 1.0,
+          ).animate(CurvedAnimation(parent: anim, curve: Curves.easeOutBack)),
           child: child,
         ),
       ),
@@ -418,25 +401,30 @@ class FavoriteScreen extends StatelessWidget {
                       color: const Color(0xFFEF4444).withValues(alpha: 0.12),
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.logout_rounded,
-                        color: Color(0xFFEF4444), size: 28),
+                    child: const Icon(
+                      Icons.logout_rounded,
+                      color: Color(0xFFEF4444),
+                      size: 28,
+                    ),
                   ),
                   const SizedBox(height: 16),
-                  Text('Sign Out?',
-                      style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w800,
-                          color: titleColor)),
+                  Text(
+                    'Sign Out?',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w800,
+                      color: titleColor,
+                    ),
+                  ),
                   const SizedBox(height: 8),
                   Text(
                     'You\'ll be returned to the sign-in screen.',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                        fontSize: 14,
-                        color: isDark
-                            ? const Color(0xFF9AA5BB)
-                            : kTextSecondary,
-                        height: 1.5),
+                      fontSize: 14,
+                      color: isDark ? const Color(0xFF9AA5BB) : kTextSecondary,
+                      height: 1.5,
+                    ),
                   ),
                   const SizedBox(height: 24),
                   Row(
@@ -447,14 +435,18 @@ class FavoriteScreen extends StatelessWidget {
                           child: Container(
                             height: 48,
                             decoration: BoxDecoration(
-                                color: cancelBg,
-                                borderRadius: BorderRadius.circular(14)),
+                              color: cancelBg,
+                              borderRadius: BorderRadius.circular(14),
+                            ),
                             alignment: Alignment.center,
-                            child: Text('Cancel',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 15,
-                                    color: titleColor)),
+                            child: Text(
+                              'Cancel',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 15,
+                                color: titleColor,
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -472,19 +464,23 @@ class FavoriteScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(14),
                               boxShadow: [
                                 BoxShadow(
-                                  color: const Color(0xFFEF4444)
-                                      .withValues(alpha: 0.35),
+                                  color: const Color(
+                                    0xFFEF4444,
+                                  ).withValues(alpha: 0.35),
                                   blurRadius: 12,
                                   offset: const Offset(0, 4),
                                 ),
                               ],
                             ),
                             alignment: Alignment.center,
-                            child: const Text('Sign Out',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: 15,
-                                    color: Colors.white)),
+                            child: const Text(
+                              'Sign Out',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            ),
                           ),
                         ),
                       ),

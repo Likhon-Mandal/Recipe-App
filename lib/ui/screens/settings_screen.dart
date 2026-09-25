@@ -31,7 +31,11 @@ class SettingsScreen extends StatelessWidget {
             slivers: [
               SliverPadding(
                 padding: EdgeInsets.fromLTRB(
-                    kHorizontalPadding, 20, kHorizontalPadding, 120),
+                  kHorizontalPadding,
+                  20,
+                  kHorizontalPadding,
+                  120,
+                ),
                 sliver: SliverList(
                   delegate: SliverChildListDelegate([
                     // ── Header ───────────────────────────────────────────
@@ -52,22 +56,31 @@ class SettingsScreen extends StatelessWidget {
                       transitionBuilder: (child, anim) => FadeTransition(
                         opacity: anim,
                         child: SlideTransition(
-                          position: Tween<Offset>(
-                            begin: const Offset(0, 0.06),
-                            end: Offset.zero,
-                          ).animate(CurvedAnimation(
-                              parent: anim, curve: Curves.easeOutCubic)),
+                          position:
+                              Tween<Offset>(
+                                begin: const Offset(0, 0.06),
+                                end: Offset.zero,
+                              ).animate(
+                                CurvedAnimation(
+                                  parent: anim,
+                                  curve: Curves.easeOutCubic,
+                                ),
+                              ),
                           child: child,
                         ),
                       ),
                       child: isGuest
                           ? _GuestSignInCard(
-                              key: const ValueKey('guest'), cardColor: cardColor, isDark: isDark)
+                              key: const ValueKey('guest'),
+                              cardColor: cardColor,
+                              isDark: isDark,
+                            )
                           : _ProfileCard(
                               key: const ValueKey('profile'),
                               user: user,
                               cardColor: cardColor,
-                              isDark: isDark),
+                              isDark: isDark,
+                            ),
                     ),
                     const SizedBox(height: 24),
 
@@ -132,7 +145,11 @@ class _SectionLabel extends StatelessWidget {
 class _GuestSignInCard extends StatefulWidget {
   final Color cardColor;
   final bool isDark;
-  const _GuestSignInCard({super.key, required this.cardColor, required this.isDark});
+  const _GuestSignInCard({
+    super.key,
+    required this.cardColor,
+    required this.isDark,
+  });
 
   @override
   State<_GuestSignInCard> createState() => _GuestSignInCardState();
@@ -151,7 +168,9 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
       duration: const Duration(milliseconds: 1800),
     )..repeat(reverse: true);
     _shimmerAnim = CurvedAnimation(
-        parent: _shimmerController, curve: Curves.easeInOut);
+      parent: _shimmerController,
+      curve: Curves.easeInOut,
+    );
   }
 
   @override
@@ -166,8 +185,7 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
     final iconBg = isDark
         ? const Color(0xFF2A2D42)
         : kPrimaryColor.withValues(alpha: 0.08);
-    final subtitleColor =
-        isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
+    final subtitleColor = isDark ? const Color(0xFF9AA5BB) : kTextSecondary;
 
     return AnimatedBuilder(
       animation: _shimmerAnim,
@@ -179,7 +197,8 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
               color: kPrimaryColor.withValues(
-                  alpha: 0.12 + _shimmerAnim.value * 0.12),
+                alpha: 0.12 + _shimmerAnim.value * 0.12,
+              ),
               width: 1.5,
             ),
             boxShadow: [
@@ -192,7 +211,8 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
               ),
               BoxShadow(
                 color: kPrimaryColor.withValues(
-                    alpha: 0.04 + _shimmerAnim.value * 0.04),
+                  alpha: 0.04 + _shimmerAnim.value * 0.04,
+                ),
                 blurRadius: 24,
                 offset: const Offset(0, 2),
               ),
@@ -229,16 +249,13 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
                       style: TextStyle(
                         fontSize: 17,
                         fontWeight: FontWeight.w700,
-                        color: isDark
-                            ? const Color(0xFFF1F3F8)
-                            : kTextPrimary,
+                        color: isDark ? const Color(0xFFF1F3F8) : kTextPrimary,
                       ),
                     ),
                     const SizedBox(height: 3),
                     Text(
                       'Sign in to unlock all features',
-                      style: TextStyle(
-                          fontSize: 13, color: subtitleColor),
+                      style: TextStyle(fontSize: 13, color: subtitleColor),
                     ),
                   ],
                 ),
@@ -252,19 +269,22 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
           Row(
             children: [
               _FeatureChip(
-                  icon: Icons.favorite_rounded,
-                  label: 'Favorites',
-                  isDark: isDark),
+                icon: Icons.favorite_rounded,
+                label: 'Favorites',
+                isDark: isDark,
+              ),
               const SizedBox(width: 8),
               _FeatureChip(
-                  icon: Icons.calendar_month_rounded,
-                  label: 'Meal Plans',
-                  isDark: isDark),
+                icon: Icons.calendar_month_rounded,
+                label: 'Meal Plans',
+                isDark: isDark,
+              ),
               const SizedBox(width: 8),
               _FeatureChip(
-                  icon: Icons.sync_rounded,
-                  label: 'Sync',
-                  isDark: isDark),
+                icon: Icons.sync_rounded,
+                label: 'Sync',
+                isDark: isDark,
+              ),
             ],
           ),
 
@@ -311,8 +331,11 @@ class _GuestSignInCardState extends State<_GuestSignInCard>
                       : Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: const [
-                            Icon(Icons.login_rounded,
-                                color: Colors.white, size: 20),
+                            Icon(
+                              Icons.login_rounded,
+                              color: Colors.white,
+                              size: 20,
+                            ),
                             SizedBox(width: 10),
                             Text(
                               'Sign In with Google',
@@ -339,8 +362,11 @@ class _FeatureChip extends StatelessWidget {
   final IconData icon;
   final String label;
   final bool isDark;
-  const _FeatureChip(
-      {required this.icon, required this.label, required this.isDark});
+  const _FeatureChip({
+    required this.icon,
+    required this.label,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -377,11 +403,12 @@ class _ProfileCard extends StatelessWidget {
   final dynamic user;
   final Color cardColor;
   final bool isDark;
-  const _ProfileCard(
-      {super.key,
-      required this.user,
-      required this.cardColor,
-      required this.isDark});
+  const _ProfileCard({
+    super.key,
+    required this.user,
+    required this.cardColor,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -409,19 +436,23 @@ class _ProfileCard extends StatelessWidget {
             height: 64,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: isDark
-                  ? const Color(0xFF2A2D42)
-                  : kSurfaceColor,
+              color: isDark ? const Color(0xFF2A2D42) : kSurfaceColor,
               border: Border.all(
-                  color: kPrimaryColor.withValues(alpha: 0.3), width: 2.5),
+                color: kPrimaryColor.withValues(alpha: 0.3),
+                width: 2.5,
+              ),
             ),
             child: user?.photoURL != null
                 ? ClipOval(
-                    child:
-                        Image.network(user!.photoURL!, fit: BoxFit.cover))
+                    child: Image.network(user!.photoURL!, fit: BoxFit.cover),
+                  )
                 : const Center(
-                    child: Icon(Icons.person_rounded,
-                        color: kPrimaryColor, size: 28)),
+                    child: Icon(
+                      Icons.person_rounded,
+                      color: kPrimaryColor,
+                      size: 28,
+                    ),
+                  ),
           ),
           const SizedBox(width: 16),
           Expanded(
@@ -433,21 +464,20 @@ class _ProfileCard extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 17,
                     fontWeight: FontWeight.w700,
-                    color: isDark
-                        ? const Color(0xFFF1F3F8)
-                        : kTextPrimary,
+                    color: isDark ? const Color(0xFFF1F3F8) : kTextPrimary,
                   ),
                 ),
                 const SizedBox(height: 3),
                 Text(
                   user?.email ?? '',
-                  style:
-                      TextStyle(fontSize: 13, color: subtitleColor),
+                  style: TextStyle(fontSize: 13, color: subtitleColor),
                 ),
                 const SizedBox(height: 6),
                 Container(
                   padding: const EdgeInsets.symmetric(
-                      horizontal: 10, vertical: 3),
+                    horizontal: 10,
+                    vertical: 3,
+                  ),
                   decoration: BoxDecoration(
                     color: kSuccessColor.withValues(alpha: 0.12),
                     borderRadius: BorderRadius.circular(8),
@@ -455,8 +485,11 @@ class _ProfileCard extends StatelessWidget {
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: const [
-                      Icon(Icons.verified_rounded,
-                          color: kSuccessColor, size: 12),
+                      Icon(
+                        Icons.verified_rounded,
+                        color: kSuccessColor,
+                        size: 12,
+                      ),
                       SizedBox(width: 4),
                       Text(
                         'Google Account',
@@ -571,9 +604,7 @@ class _AboutCard extends StatelessWidget {
           onTap: () {
             HapticFeedback.lightImpact();
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(
-                content: Text('Thank you for your support! ⭐'),
-              ),
+              const SnackBar(content: Text('Thank you for your support! ⭐')),
             );
           },
           isDark: isDark,
@@ -595,9 +626,7 @@ class _DeveloperCard extends StatelessWidget {
     return _SettingsCard(
       cardColor: cardColor,
       isDark: isDark,
-      children: [
-        _DeveloperRow(isFirst: true, isDark: isDark),
-      ],
+      children: [_DeveloperRow(isFirst: true, isDark: isDark)],
     );
   }
 }
@@ -614,9 +643,7 @@ class _AccountCard extends StatelessWidget {
     return _SettingsCard(
       cardColor: cardColor,
       isDark: isDark,
-      children: [
-        _SignOutRow(isDark: isDark),
-      ],
+      children: [_SignOutRow(isDark: isDark)],
     );
   }
 }
@@ -627,10 +654,11 @@ class _SettingsCard extends StatelessWidget {
   final List<Widget> children;
   final Color cardColor;
   final bool isDark;
-  const _SettingsCard(
-      {required this.children,
-      required this.cardColor,
-      required this.isDark});
+  const _SettingsCard({
+    required this.children,
+    required this.cardColor,
+    required this.isDark,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -694,28 +722,29 @@ class _ToggleRow extends StatelessWidget {
               color: iconBg,
               borderRadius: BorderRadius.circular(12),
             ),
-            child: Center(
-                child: Icon(icon, color: kPrimaryColor, size: 20)),
+            child: Center(child: Icon(icon, color: kPrimaryColor, size: 20)),
           ),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(label,
-                    style: TextStyle(
-                        fontWeight: FontWeight.w600,
-                        fontSize: 15,
-                        color: textColor)),
-                Text(subtitle,
-                    style: TextStyle(fontSize: 12, color: subtitleColor)),
+                Text(
+                  label,
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                    color: textColor,
+                  ),
+                ),
+                Text(
+                  subtitle,
+                  style: TextStyle(fontSize: 12, color: subtitleColor),
+                ),
               ],
             ),
           ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-          ),
+          Switch(value: value, onChanged: onChanged),
         ],
       ),
     );
@@ -760,24 +789,29 @@ class _LinkRow extends StatelessWidget {
                 color: iconBg,
                 borderRadius: BorderRadius.circular(12),
               ),
-              child: Center(
-                  child: Icon(icon, color: kPrimaryColor, size: 20)),
+              child: Center(child: Icon(icon, color: kPrimaryColor, size: 20)),
             ),
             const SizedBox(width: 14),
             Expanded(
-              child: Text(label,
-                  style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 15,
-                      color: textColor)),
+              child: Text(
+                label,
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 15,
+                  color: textColor,
+                ),
+              ),
             ),
             if (trailing != null)
-              Text(trailing!,
-                  style: TextStyle(
-                      color: trailColor, fontWeight: FontWeight.w500))
+              Text(
+                trailing!,
+                style: TextStyle(
+                  color: trailColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              )
             else if (onTap != null)
-              Icon(Icons.chevron_right_rounded,
-                  color: trailColor, size: 20),
+              Icon(Icons.chevron_right_rounded, color: trailColor, size: 20),
           ],
         ),
       ),
@@ -813,8 +847,7 @@ class _SignOutRow extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12),
               ),
               child: const Center(
-                child: Icon(Icons.logout_rounded,
-                    color: redColor, size: 20),
+                child: Icon(Icons.logout_rounded, color: redColor, size: 20),
               ),
             ),
             const SizedBox(width: 14),
@@ -828,8 +861,7 @@ class _SignOutRow extends StatelessWidget {
                 ),
               ),
             ),
-            const Icon(Icons.chevron_right_rounded,
-                color: redColor, size: 20),
+            const Icon(Icons.chevron_right_rounded, color: redColor, size: 20),
           ],
         ),
       ),
@@ -838,8 +870,7 @@ class _SignOutRow extends StatelessWidget {
 
   void _showSignOutDialog(BuildContext context) {
     final isDark = Theme.of(context).brightness == Brightness.dark;
-    final dialogBg =
-        isDark ? const Color(0xFF1E2235) : Colors.white;
+    final dialogBg = isDark ? const Color(0xFF1E2235) : Colors.white;
     showGeneralDialog(
       context: context,
       barrierDismissible: true,
@@ -850,9 +881,10 @@ class _SignOutRow extends StatelessWidget {
         return FadeTransition(
           opacity: anim,
           child: ScaleTransition(
-            scale: Tween<double>(begin: 0.88, end: 1.0).animate(
-              CurvedAnimation(parent: anim, curve: Curves.easeOutBack),
-            ),
+            scale: Tween<double>(
+              begin: 0.88,
+              end: 1.0,
+            ).animate(CurvedAnimation(parent: anim, curve: Curves.easeOutBack)),
             child: child,
           ),
         );
@@ -873,12 +905,14 @@ class _SignOutRow extends StatelessWidget {
                       width: 60,
                       height: 60,
                       decoration: BoxDecoration(
-                        color: const Color(0xFFEF4444)
-                            .withValues(alpha: 0.12),
+                        color: const Color(0xFFEF4444).withValues(alpha: 0.12),
                         shape: BoxShape.circle,
                       ),
-                      child: const Icon(Icons.logout_rounded,
-                          color: Color(0xFFEF4444), size: 28),
+                      child: const Icon(
+                        Icons.logout_rounded,
+                        color: Color(0xFFEF4444),
+                        size: 28,
+                      ),
                     ),
                     const SizedBox(height: 16),
                     Text(
@@ -886,9 +920,7 @@ class _SignOutRow extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.w800,
-                        color: isDark
-                            ? const Color(0xFFF1F3F8)
-                            : kTextPrimary,
+                        color: isDark ? const Color(0xFFF1F3F8) : kTextPrimary,
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -918,8 +950,7 @@ class _SignOutRow extends StatelessWidget {
                                 color: isDark
                                     ? const Color(0xFF2A2D42)
                                     : const Color(0xFFF3F4F6),
-                                borderRadius:
-                                    BorderRadius.circular(14),
+                                borderRadius: BorderRadius.circular(14),
                               ),
                               alignment: Alignment.center,
                               child: Text(
@@ -947,12 +978,12 @@ class _SignOutRow extends StatelessWidget {
                               height: 48,
                               decoration: BoxDecoration(
                                 color: const Color(0xFFEF4444),
-                                borderRadius:
-                                    BorderRadius.circular(14),
+                                borderRadius: BorderRadius.circular(14),
                                 boxShadow: [
                                   BoxShadow(
-                                    color: const Color(0xFFEF4444)
-                                        .withValues(alpha: 0.35),
+                                    color: const Color(
+                                      0xFFEF4444,
+                                    ).withValues(alpha: 0.35),
                                     blurRadius: 12,
                                     offset: const Offset(0, 4),
                                   ),
@@ -1011,8 +1042,7 @@ class _DeveloperRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textColor = isDark ? const Color(0xFFF1F3F8) : kTextPrimary;
-    final githubBg =
-        isDark ? const Color(0xFF24292E) : const Color(0xFF24292E);
+    final githubBg = isDark ? const Color(0xFF24292E) : const Color(0xFF24292E);
 
     return _PressableButton(
       onTap: () async {
@@ -1075,8 +1105,7 @@ class _DeveloperRow extends StatelessWidget {
               ),
             ),
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
               decoration: BoxDecoration(
                 color: githubBg,
                 borderRadius: BorderRadius.circular(10),
@@ -1084,8 +1113,11 @@ class _DeveloperRow extends StatelessWidget {
               child: const Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.open_in_new_rounded,
-                      color: Colors.white, size: 12),
+                  Icon(
+                    Icons.open_in_new_rounded,
+                    color: Colors.white,
+                    size: 12,
+                  ),
                   SizedBox(width: 4),
                   Text(
                     'GitHub',
@@ -1125,9 +1157,13 @@ class _PressableButtonState extends State<_PressableButton>
   void initState() {
     super.initState();
     _ctrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 100));
-    _scaleAnim = Tween<double>(begin: 1.0, end: 0.96).animate(
-        CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+    );
+    _scaleAnim = Tween<double>(
+      begin: 1.0,
+      end: 0.96,
+    ).animate(CurvedAnimation(parent: _ctrl, curve: Curves.easeInOut));
   }
 
   @override
@@ -1139,8 +1175,7 @@ class _PressableButtonState extends State<_PressableButton>
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTapDown:
-          widget.onTap != null ? (_) => _ctrl.forward() : null,
+      onTapDown: widget.onTap != null ? (_) => _ctrl.forward() : null,
       onTapUp: widget.onTap != null
           ? (_) async {
               await _ctrl.reverse();

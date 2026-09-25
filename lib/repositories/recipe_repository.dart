@@ -8,7 +8,7 @@ class RecipeRepository {
   final String collectionName = 'recipes_v4';
 
   RecipeRepository({FirestoreService? firestoreService})
-      : _firestoreService = firestoreService ?? FirestoreService();
+    : _firestoreService = firestoreService ?? FirestoreService();
 
   Future<List<Recipe>> getRecipes() async {
     try {
@@ -39,7 +39,10 @@ class RecipeRepository {
         collectionPath: collectionName,
         items: items,
         idGenerator: (item) => mockRecipes
-            .firstWhere((r) => r.name == item['name'], orElse: () => mockRecipes.first)
+            .firstWhere(
+              (r) => r.name == item['name'],
+              orElse: () => mockRecipes.first,
+            )
             .id,
       );
       debugPrint("Successfully seeded mock data to Firestore");

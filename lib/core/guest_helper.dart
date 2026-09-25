@@ -8,9 +8,13 @@ void showGuestLoginDialog(BuildContext context) {
     context: context,
     builder: (ctx) => AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-      title: const Text('Sign in Required',
-          style: TextStyle(fontWeight: FontWeight.w700)),
-      content: const Text('You need to sign in to save favorites and meal plans. Would you like to sign in now?'),
+      title: const Text(
+        'Sign in Required',
+        style: TextStyle(fontWeight: FontWeight.w700),
+      ),
+      content: const Text(
+        'You need to sign in to save favorites and meal plans. Would you like to sign in now?',
+      ),
       actions: [
         TextButton(
           onPressed: () => Navigator.pop(ctx),
@@ -20,7 +24,8 @@ void showGuestLoginDialog(BuildContext context) {
           style: ElevatedButton.styleFrom(
             backgroundColor: kPrimaryColor,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10)),
+              borderRadius: BorderRadius.circular(10),
+            ),
           ),
           onPressed: () {
             Navigator.pop(ctx);

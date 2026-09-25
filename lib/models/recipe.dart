@@ -20,11 +20,7 @@ class Ingredient {
   }
 
   Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'image': image,
-      'baseAmount': baseAmount,
-    };
+    return {'name': name, 'image': image, 'baseAmount': baseAmount};
   }
 
   factory Ingredient.fromFirestore(Map<String, dynamic> data) {
@@ -85,12 +81,14 @@ class Recipe {
       time: json['time'] as int? ?? 0,
       rating: (json['rating'] as num?)?.toDouble() ?? 0.0,
       reviews: json['reviews'] as int? ?? 0,
-      ingredients: (json['ingredients'] as List<dynamic>?)
+      ingredients:
+          (json['ingredients'] as List<dynamic>?)
               ?.map((e) => Ingredient.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       description: json['description'] as String? ?? '',
-      instructions: (json['instructions'] as List<dynamic>?)
+      instructions:
+          (json['instructions'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],
@@ -123,12 +121,14 @@ class Recipe {
       time: data['time'] as int? ?? 0,
       rating: (data['rating'] as num?)?.toDouble() ?? 0.0,
       reviews: data['reviews'] as int? ?? 0,
-      ingredients: (data['ingredients'] as List<dynamic>?)
+      ingredients:
+          (data['ingredients'] as List<dynamic>?)
               ?.map((e) => Ingredient.fromFirestore(e as Map<String, dynamic>))
               .toList() ??
           const [],
       description: data['description'] as String? ?? '',
-      instructions: (data['instructions'] as List<dynamic>?)
+      instructions:
+          (data['instructions'] as List<dynamic>?)
               ?.map((e) => e as String)
               .toList() ??
           const [],

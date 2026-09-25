@@ -28,14 +28,11 @@ class LoginScreen extends StatelessWidget {
                       color: const Color(0xFFFF6B35).withValues(alpha: 0.15),
                       blurRadius: 30,
                       spreadRadius: 8,
-                    )
+                    ),
                   ],
                 ),
                 child: ClipOval(
-                  child: Image.asset(
-                    'assets/logo.png',
-                    fit: BoxFit.cover,
-                  ),
+                  child: Image.asset('assets/logo.png', fit: BoxFit.cover),
                 ),
               ),
 
@@ -89,15 +86,20 @@ class LoginScreen extends StatelessWidget {
                           padding: const EdgeInsets.only(bottom: 16),
                           child: Container(
                             padding: const EdgeInsets.symmetric(
-                                horizontal: 16, vertical: 10),
+                              horizontal: 16,
+                              vertical: 10,
+                            ),
                             decoration: BoxDecoration(
                               color: const Color(0xFFFFEBEE),
                               borderRadius: BorderRadius.circular(12),
                             ),
                             child: Row(
                               children: [
-                                const Icon(Icons.error_outline,
-                                    color: Color(0xFFE53935), size: 18),
+                                const Icon(
+                                  Icons.error_outline,
+                                  color: Color(0xFFE53935),
+                                  size: 18,
+                                ),
                                 const SizedBox(width: 10),
                                 Expanded(
                                   child: Text(
@@ -211,10 +213,7 @@ class LoginScreen extends StatelessWidget {
               const Text(
                 'By continuing, you agree to our Terms & Privacy Policy.',
                 textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Color(0xFFBDBDBD),
-                ),
+                style: TextStyle(fontSize: 12, color: Color(0xFFBDBDBD)),
               ),
 
               const SizedBox(height: 32),
