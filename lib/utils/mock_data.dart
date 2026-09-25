@@ -1,14 +1,7 @@
 import '../models/recipe.dart';
 
-// --- Original 10 Images ---
-const String _pizzaImg =
-    "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
-const String _steakImg =
-    "https://images.unsplash.com/photo-1600891964092-4316c288032e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
 const String _burgerImg =
     "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
-const String _cakeImg =
-    "https://images.unsplash.com/photo-1578985545062-69928b1d9587?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
 const String _salmonImg =
     "https://images.unsplash.com/photo-1485921325833-c519f76c4927?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
 const String _avocadoToastImg =
@@ -69,10 +62,6 @@ const String _hotDogImg =
     "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Hot_dog_with_mustard.png/960px-Hot_dog_with_mustard.png";
 const String _burritoImg =
     "https://images.unsplash.com/photo-1626700051175-6818013e1d4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
-const String _wafflesImg =
-    "https://images.unsplash.com/photo-1562376552-0d160a2f5f14?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
-const String _sushiImg =
-    "https://images.unsplash.com/photo-1579871494447-9811cf80d66c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80";
 
 // --- Ingredients Images ---
 const String _cheeseImg =
